@@ -60,7 +60,7 @@ function registerValidSW(swUrl, config) {
     .register(swUrl)
     .then(registration => {
       console.log(registration);
-      consoleregistration.waiting.addEventListener('statechange', (event) => {
+      registration.waiting.addEventListener('statechange', (event) => {
         console.log(event.target);
 
       })

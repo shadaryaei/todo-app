@@ -18,9 +18,9 @@ serviceWorker.register({
     if (waitingServiceWorker) {
       waitingServiceWorker.addEventListener("statechange", (event) => {
         console.log('event', event);
-        if (event.target.state === "activated") {
-          window.location.reload()
-        }
+        // if (event.target.state === "activated") {
+        //   window.location.reload()
+        // }
       });
 
       waitingServiceWorker.postMessage({ type: "SKIP_WAITING" });
