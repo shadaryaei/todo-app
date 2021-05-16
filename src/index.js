@@ -17,9 +17,9 @@ serviceWorker.register({
       alert("you need to reload the page");
       waitingServiceWorker.addEventListener("statechange", (event) => {
         console.log(event);
-        // if (event.target.state === "activated") {
-        //   window.location.reload()
-        // }
+        if (event.target.state === "activated") {
+          window.location.reload()
+        }
       });
 
       waitingServiceWorker.postMessage({ type: "SKIP_WAITING" });
