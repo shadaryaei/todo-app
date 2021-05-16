@@ -14,16 +14,12 @@ serviceWorker.register({
   onUpdate: (registration) => {
     const waitingServiceWorker = registration.waiting;
 
-    console.log("registration", registration);
-
     if (waitingServiceWorker) {
       waitingServiceWorker.addEventListener("statechange", (event) => {
-        console.log("event", event);
-        // if (event.target.state === "activated") {
-        //   window.location.reload()
-        // }
+        if (event.target.state === "activated") {
+          window.location.reload();
+        }
       });
-
       waitingServiceWorker.postMessage({ type: "SKIP_WAITING" });
     }
   },
