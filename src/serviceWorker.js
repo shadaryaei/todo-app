@@ -59,7 +59,7 @@ function registerValidSW(swUrl, config) {
   navigator.serviceWorker
     .register(swUrl)
     .then(registration => {
-      console.log(registration.waiting);
+      console.log(registration && registration.waiting);
       if (registration.waiting) {
         registration.waiting.addEventListener('statechange', (event) => {
           console.log(event.target);
