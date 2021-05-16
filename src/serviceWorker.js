@@ -61,7 +61,7 @@ function registerValidSW(swUrl, config) {
     .then(registration => {
       console.log(registration);
       consoleregistration.waiting.addEventListener('statechange', (event) => {
-        console.log(event.target, event.target.state);
+        console.log(event.target);
 
       })
       registration.onupdatefound = () => {
