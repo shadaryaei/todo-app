@@ -14,7 +14,6 @@ serviceWorker.register({
     const waitingServiceWorker = registration.waiting;
 
     if (waitingServiceWorker) {
-    //   alert("you need to reload the page");
       waitingServiceWorker.addEventListener("statechange", (event) => {
         console.log(event);
         if (event.target.state === "activated") {
