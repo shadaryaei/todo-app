@@ -59,12 +59,7 @@ function registerValidSW(swUrl, config) {
   navigator.serviceWorker
     .register(swUrl)
     .then(registration => {
-      console.log(registration && registration.waiting);
-      if (registration.waiting) {
-        registration.waiting.addEventListener('statechange', (event) => {
-          console.log(event.target);
-        })
-      }
+      console.log(registration);
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
         if (installingWorker == null) {
