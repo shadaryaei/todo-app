@@ -13,6 +13,8 @@ serviceWorker.register({
   onUpdate: (registration) => {
     const waitingServiceWorker = registration.waiting;
 
+    console.log(registration)
+
     if (waitingServiceWorker) {
       waitingServiceWorker.addEventListener("statechange", (event) => {
         console.log(event);
