@@ -22,6 +22,7 @@ const QrCodeScanner = ({ onScan, onGetFileData, autoPlay = true }) => {
       const canvas = document.createElement("canvas");
       const currentCtx = canvas.getContext("2d");
 
+      console.log('event.target.files[0]', event.target.files[0]);
       canvas.width = bmp.width;
       canvas.height = bmp.height;
 
@@ -38,6 +39,8 @@ const QrCodeScanner = ({ onScan, onGetFileData, autoPlay = true }) => {
         qrCodeImageFormat.width,
         qrCodeImageFormat.height
       );
+      
+      console.log('qrDecoded', qrDecoded);
 
       if (onGetFileData instanceof Function && qrDecoded) {
         onGetFileData(qrDecoded.data);
@@ -80,6 +83,7 @@ const QrCodeScanner = ({ onScan, onGetFileData, autoPlay = true }) => {
 
         const code = jsQR(imageData.data, imageData.width, imageData.height);
 
+        console.log('code', code);
         if (code) {
           onScan(code.data);
         }
