@@ -137,7 +137,7 @@ const QrCodeScanner = ({ onScan, onGetFileData, autoPlay = true }) => {
         ref={videoRef}
         autoPlay={autoPlay}
         playsInline
-        style={{ width: "100%", borderRadius: "15px", transform: "scaleX(-1)" }}
+        style={{ width: "100%", borderRadius: "15px" }}
       />
       <canvas ref={canvasRef} hidden />
 
