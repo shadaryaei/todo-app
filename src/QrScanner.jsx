@@ -33,6 +33,8 @@ const QrCodeScanner = ({ onScan, onGetFileData, autoPlay = true }) => {
         bmp.width,
         bmp.height
       );
+      
+      console.log('qrCodeImageFormat', qrCodeImageFormat);
 
       const qrDecoded = jsQR(
         qrCodeImageFormat.data,
