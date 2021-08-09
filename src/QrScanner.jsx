@@ -36,6 +36,8 @@ const QrCodeScanner = ({ onScan, onGetFileData, autoPlay = true }) => {
           canvas.width,
           canvas.height
         );
+        
+        console.log('imageData', imageData);
 
         const code = jsQR(imageData.data, imageData.width, imageData.height);
 
