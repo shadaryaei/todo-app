@@ -1,5 +1,5 @@
 import React from 'react';
-import QrScanner from './qr-scanner'
+import QrScanner from './QrScanner'
 import './App.css';
 
 function App() {
