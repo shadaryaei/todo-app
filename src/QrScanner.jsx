@@ -3,6 +3,7 @@ import jsQR from "jsqr";
 
 const QrCodeScanner = ({ onScan, onGetFileData, autoPlay = true }) => {
   const [ctx, setCtx] = React.useState();
+  const [torch, setTorch] = React.useState(null);
   const videoRef = React.useRef(null);
   const canvasRef = React.useRef(null);
   const requestRef = React.useRef(null);
@@ -104,13 +105,9 @@ const QrCodeScanner = ({ onScan, onGetFileData, autoPlay = true }) => {
     navigator.mediaDevices
       .getUserMedia({ video: { facingMode: "environment" }, audio: false })
       .then(function(streamContext) {
-        streamContext.getVideoTracks()[0].applyConstraints({
-          advanced: [
-            {
-              advanced: [{ torch: true }],
-            },
-          ],
-        });
+        const track = streamContext.getVideoTracks()[0];
+        
+        setTorch(track);
         stream = streamContext;
 
         if (videoRef.current) {
@@ -133,6 +130,11 @@ const QrCodeScanner = ({ onScan, onGetFileData, autoPlay = true }) => {
 
   return (
     <div style={{ width: "100%", lineHeight: 0, position: "relative" }}>
+      <button onClick={() => {
+        track.applyConstraints({
+          advanced: [{torch: true}]
+        });
+      }>test</button>
       <video
         ref={videoRef}
         autoPlay={autoPlay}
