@@ -84,7 +84,7 @@ const QrCodeScanner = ({ onScan, onGetFileData, autoPlay = true }) => {
         const code = jsQR(imageData.data, imageData.width, imageData.height);
 
         console.log('code', code);
-        if (code) {
+        if (onScan instanceof Function && code) {
           onScan(code.data);
         }
 
