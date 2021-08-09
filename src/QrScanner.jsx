@@ -18,36 +18,32 @@ const QrCodeScanner = ({ onScan, onGetFileData, autoPlay = true }) => {
    * @param {React.ChangeEvent<HTMLInputElement>} event
    */
   const handleInputFileChange = (event) => {
-    createImageBitmap(event.target.files[0]).then((bmp) => {
-      const canvas = document.createElement("canvas");
-      const currentCtx = canvas.getContext("2d");
+    const canvas = document.createElement("canvas");
+    const currentCtx = canvas.getContext("2d");
+    const reader = new FileReader();
+    
+    reader.onload = function (event) {
+      const img = new Image();
 
-      console.log('event.target.files[0]', event.target.files[0]);
-      canvas.width = bmp.width;
-      canvas.height = bmp.height;
+      img.onload = function () {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        currentCtx.drawImage(img, 0, 0);
 
-      currentCtx.drawImage(bmp, 0, 0);
-      const qrCodeImageFormat = currentCtx.getImageData(
-        0,
-        0,
-        bmp.width,
-        bmp.height
-      );
-      
-      console.log('qrCodeImageFormat', qrCodeImageFormat);
+        const imageData = currentCtx.getImageData(
+          0,
+          0,
+          canvas.width,
+          canvas.height
+        );
 
-      const qrDecoded = jsQR(
-        qrCodeImageFormat.data,
-        qrCodeImageFormat.width,
-        qrCodeImageFormat.height
-      );
-      
-      console.log('qrDecoded', qrDecoded);
+        const code = jsQR(imageData.data, imageData.width, imageData.height);
 
-      if (onGetFileData instanceof Function && qrDecoded) {
-        onGetFileData(qrDecoded.data);
-      }
-    });
+        console.log(code)
+      };
+      img.src = event.target.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
   };
 
   /**
