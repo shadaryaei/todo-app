@@ -10,6 +10,7 @@ const QrCodeScanner = ({ onScan, onGetFileData, autoPlay = true }) => {
   const timeoutRef = React.useRef(null);
   const inputFileRef = React.useRef(null);
 
+  console.log(torch);
   const handleSetFile = () => {
     inputFileRef.current.click();
   };
