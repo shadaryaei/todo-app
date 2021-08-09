@@ -131,10 +131,10 @@ const QrCodeScanner = ({ onScan, onGetFileData, autoPlay = true }) => {
   return (
     <div style={{ width: "100%", lineHeight: 0, position: "relative" }}>
       <button onClick={() => {
-        track.applyConstraints({
+        torch.applyConstraints({
           advanced: [{torch: true}]
         });
-      }>test</button>
+      }}>test</button>
       <video
         ref={videoRef}
         autoPlay={autoPlay}
