@@ -3,7 +3,6 @@ import QrScanner from './QrScanner'
 import './App.css';
 
 function App() {
-  
   return (
     <main>
       <QrScanner />
